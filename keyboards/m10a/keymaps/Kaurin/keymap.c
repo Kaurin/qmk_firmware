@@ -17,10 +17,10 @@ enum layers {
 };
 
 enum custom_keycodes {
-    QMK_REV,
+    QMK_REV = SAFE_RANGE,
     KC_WEB,
     KC_WCLS,
-    DYNAMIC_MACRO_RANGE = SAFE_RANGE
+    DYNAMIC_MACRO_RANGE
 };
 
 extern backlight_config_t backlight_config;
@@ -76,9 +76,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case KC_WEB:
             if (record->event.pressed) {
-                SEND_STRING(SS_LGUI("r"));
+                tap_code(KC_ESC);
                 wait_ms(100);
-                SEND_STRING("chrome.exe\n");
+                SEND_STRING(":q!\n");
             }
             return false;
             break;
