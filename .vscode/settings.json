@@ -13,5 +13,7 @@
         "*.cpp": "cpp",
         "*.hpp": "cpp",
         "xstddef": "c"
-    }
+    },
+    "editor.formatOnSave": false,
+    "C_Cpp.default.includePath": ["${workspaceFolder}/quantum","${fileDirname}"]
 }
