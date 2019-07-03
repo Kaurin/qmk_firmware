@@ -3,7 +3,7 @@
 #   the appropriate keymap folder that will get included automatically
 #
 TAP_DANCE_ENABLE = no       # Enable TapDance functionality
-RGBLIGHT_ENABLE = no        # Enable WS2812 RGB underlight. 
+RGBLIGHT_ENABLE = no        # Enable WS2812 RGB underlight.
 BOOTMAGIC_ENABLE = no       # Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE = yes       # Mouse keys(+1500)
 EXTRAKEY_ENABLE = yes       # Audio control and System control(+450)
@@ -22,4 +22,3 @@ FAUXCLICKY_ENABLE = no      # Uses buzzer to emulate clicky switches.  By defaul
 API_SYSEX_ENABLE = no       # This enables using the Quantum SYSEX API to send strings(+5390)
 KEY_LOCK_ENABLE = no        # This enables key lock(+260)
 SPLIT_KEYBOARD = no         # This enables split keyboard support and includes all necessary files located at quantum/split_common
-
