@@ -1,5 +1,5 @@
-# Keymap Maintainer: Gam3cat
-make m10a:gam3cat
+# Keymap Maintainer: Kaurin
+make m10a:kaurin
 ## Layout Config:
     .-----------.  .-----------.  .-----------.  .-----------.  .-----------.
     |7  |8  |9  |  |+  |-  |*  |  |^  |&  |!  |  |VLU|Ver|WFD|  |VLU|NXT|FFD|
@@ -19,3 +19,6 @@ make m10a:gam3cat
     |-----------|  |-----------|  |-----------|  |-----------|  |-----------|
     |#L5|_L9    |  |#L6|_L9    |  |#L7|_L9    |  |#L8|_L9    |  |#L9|       |
     *-----------*  *-----------*  *-----------*  *-----------*  *-----------*
+
+## Contribution
+Based on m10a/gam3cat
