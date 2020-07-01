@@ -16,41 +16,31 @@ enum layers {
     _L9
 };
 
-///// TWO RULES HERE:
-// * DYNAMIC_MACRO_RANGE needs to go last.
-// * First enum needs to have = SAFE_RANGE
 enum custom_keycodes {
     KC_REV = SAFE_RANGE,
     KC_VIQ, // Vim quit without changes
     KC_VWQ, // Vim quit while saving changes
     KC_VSE, // Vim quit while saving changes
-    KC_TST,
-    DYNAMIC_MACRO_RANGE
+    KC_TST
 };
 
 extern backlight_config_t backlight_config;
 
-#include "dynamic_macro.h"
 #define FN_ZERO LT(_L9, KC_KP_0)
-#define KC_DMR1 DYN_REC_START1
-#define KC_DMR2 DYN_REC_START2
-#define KC_DMP1 DYN_MACRO_PLAY1
-#define KC_DMP2 DYN_MACRO_PLAY2
-#define KC_DMRS DYN_REC_STOP
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*## Layout Config:
     *     .-----------.  .-----------.  .-----------.  .-----------.  .-----------.
-    *     |7  |8  |9  |  |VSE|   |VWQ|  |   |   |   |  |   |   |   |  |   |   |   |
+    *     |7  |8  |9  |  |VSE|   |VWQ|  |BST|   |   |  |   |   |   |  |   |   |   |
     *     |-----------|  |-----------|  |-----------|  |-----------|  |-----------|
-    *     |4  |5  |6  |  |   |VIQ|   |  |   |   |   |  |   |   |   |  |   |   |   |
+    *     |4  |5  |6  |  |   |VIQ|   |  |BIN|BDC|   |  |   |   |   |  |   |   |   |
     *     |-----------|  |-----------|  |-----------|  |-----------|  |-----------|
-    *     |1  |2  |3  |  |   |TST|   |  |   |   |   |  |   |   |   |  |   |   |   |
+    *     |1  |2  |3  |  |   |TST|   |  |BON|BOF|BTG|  |   |   |   |  |   |   |   |
     *     |-----------|  |-----------|  |-----------|  |-----------|  |-----------|
     *     |#L0|_L9/0  |  |#L1|_L9    |  |#L2|_L9    |  |#L3|_L9    |  |#L4|_L9    |
     *     *-----------*  *-----------*  *-----------*  *-----------*  *-----------*
     *     .-----------.  .-----------.  .-----------.  .-----------.  .-----------.
-    *     |   |   |   |  |   |   |   |  |MP1|   |MP2|  |   |   |RST|  |_L6|_L7|_L8|
+    *     |   |   |   |  |   |   |   |  |MP1|   |MP2|  |   |   |   |  |_L6|_L7|_L8|
     *     |-----------|  |-----------|  |-----------|  |-----------|  |-----------|
     *     |   |   |   |  |   |   |   |  |   |MRS|   |  |   |   |   |  |_L3|_L4|_L5|
     *     |-----------|  |-----------|  |-----------|  |-----------|  |-----------|
@@ -60,14 +50,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *     *-----------*  *-----------*  *-----------*  *-----------*  *-----------*
     */
     [_L0] = {{KC_KP_7, KC_KP_8, KC_KP_9}, {KC_KP_4, KC_KP_5, KC_KP_6}, {KC_KP_1, KC_KP_2, KC_KP_3}, {XXXXXXX, XXXXXXX, FN_ZERO}},
-    [_L1] = {{KC_VSE , _______, KC_VWQ }, {_______, KC_VIQ , _______}, {_______, KC_TST, _______}, {XXXXXXX, XXXXXXX, MO(_L9)}},
-    [_L2] = {{_______, _______, _______}, {_______, _______, _______}, {_______, _______, _______}, {XXXXXXX, XXXXXXX, MO(_L9)}},
+    [_L1] = {{KC_VSE , _______, KC_VWQ }, {_______, KC_VIQ , _______}, {_______, KC_TST , _______}, {XXXXXXX, XXXXXXX, MO(_L9)}},
+    [_L2] = {{BL_STEP, _______, _______}, {BL_INC , BL_DEC , _______}, {BL_ON  , BL_OFF , BL_TOGG}, {XXXXXXX, XXXXXXX, MO(_L9)}},
     [_L3] = {{_______, _______, _______}, {_______, _______, _______}, {_______, _______, _______}, {XXXXXXX, XXXXXXX, MO(_L9)}},
     [_L4] = {{_______, _______, _______}, {_______, _______, _______}, {_______, _______, _______}, {XXXXXXX, XXXXXXX, MO(_L9)}},
     [_L5] = {{_______, _______, _______}, {_______, _______, _______}, {_______, _______, _______}, {XXXXXXX, XXXXXXX, MO(_L9)}},
     [_L6] = {{_______, _______, _______}, {_______, _______, _______}, {_______, _______, _______}, {XXXXXXX, XXXXXXX, MO(_L9)}},
-    [_L7] = {{KC_DMP1, _______, KC_DMP2}, {_______, KC_DMRS, _______}, {KC_DMR1, _______, KC_DMR2}, {XXXXXXX, XXXXXXX, MO(_L9)}},
-    [_L8] = {{_______, _______, RESET  }, {_______, _______, _______}, {_______, KC_REV , _______}, {XXXXXXX, XXXXXXX, MO(_L9)}},
+    [_L7] = {{DM_PLY1, _______, DM_PLY2}, {_______, DM_RSTP, _______}, {DM_REC1, _______, DM_REC2}, {XXXXXXX, XXXXXXX, MO(_L9)}},
+    [_L8] = {{_______, _______, _______}, {_______, _______, _______}, {_______, KC_REV , _______}, {XXXXXXX, XXXXXXX, MO(_L9)}},
     [_L9] = {{DF(_L6), DF(_L7), DF(_L8)}, {DF(_L3), DF(_L4), DF(_L5)}, {DF(_L0), DF(_L1), DF(_L2)}, {XXXXXXX, XXXXXXX, _______}},
 };
 
@@ -107,70 +97,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
     }
-    // Dynamic Macros.
-    if (!process_record_dynamic_macro(keycode, record)) {
-        return false;
-    }
     return true;
-}
-
-void custom_backlight_level(uint8_t level) {
-    if (level > BACKLIGHT_LEVELS)
-        level = BACKLIGHT_LEVELS;
-    backlight_config.level = level;
-    backlight_config.enable = !!backlight_config.level;
-    backlight_set(backlight_config.level);
-}
-
-void matrix_init_user(void) {
-  #ifdef BACKLIGHT_ENABLE
-    custom_backlight_level(0);
-  #endif
-}
-
-void matrix_scan_user(void) {
-
-}
-
-uint32_t layer_state_set_user(uint32_t state) {
-    switch (biton32(state)) {
-        case _L0:
-            custom_backlight_level(0);
-            break;
-        case _L1:
-            custom_backlight_level(1);
-            break;
-        case _L2:
-            custom_backlight_level(2);
-            break;
-        case _L3:
-            custom_backlight_level(3);
-            break;
-        case _L4:
-            custom_backlight_level(4);
-            break;
-        case _L5:
-            custom_backlight_level(5);
-            break;
-        case _L6:
-            custom_backlight_level(6);
-            break;
-        case _L7:
-            custom_backlight_level(6);
-            break;
-        case _L8:
-            custom_backlight_level(6);
-            break;
-        case _L9:
-            custom_backlight_level(0);
-            break;
-        default:
-            custom_backlight_level(0);
-            break;
-    }
-    return state;
-}
-
-void led_set_user(uint8_t usb_led) {
-
 }
